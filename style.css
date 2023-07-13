@@ -1,0 +1,12 @@
+body { margin: 0; }
+.webgl { 
+  /* centered in page */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* prevent scrollbars */
+  overflow: hidden;
+  /* black background */
+  background-color: #000;
+}
