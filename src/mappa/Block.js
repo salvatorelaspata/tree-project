@@ -1,22 +1,17 @@
 // Block like minecraft
 
-import { BoxGeometry, CubeTextureLoader, DoubleSide, Mesh, MeshBasicMaterial, TextureLoader } from "three";
+import { BoxGeometry, DoubleSide, Mesh, MeshBasicMaterial, TextureLoader } from "three";
 
-
-const Block = function (x, y, z) {
+const texture = new TextureLoader().load('https://i.redd.it/wly7g262kw461.jpg');
+const Block = function (x, y, z, type = 'stone') {
     const geometry = new BoxGeometry(1, 1, 1);
 
-    // apply "texture" to block from url
-    const loader = new CubeTextureLoader();
-    const texture = loader.load([
-        "vite.svg"
-    ]);
-
-    const material = new MeshBasicMaterial({ color: 0x00ff00, side: DoubleSide, envMap: texture });
+    // create a stone block
+    const material = new MeshBasicMaterial({ map: texture, side: DoubleSide });
     const mesh = new Mesh(geometry, material);
-    mesh.position.set(x, y, z);
+    mesh.position.set(x, y, z); z
+
     return mesh;
 }
-
 
 export default Block;

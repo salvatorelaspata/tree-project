@@ -1,9 +1,5 @@
-import { Mesh } from "three";
-import { MeshBasicMaterial } from "three";
-import { BoxGeometry } from "three";
+import Block from "../mappa/block";
 
-const geometry = new BoxGeometry(1, 1, 1);
-const material = new MeshBasicMaterial({ color: 0x0000ff });
-const mesh = new Mesh(geometry, material);
+const mesh = Block(0, 0, 0, 'stone');
 
 export { mesh as cube }
