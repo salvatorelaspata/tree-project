@@ -1,11 +1,10 @@
-import { Color, RepeatWrapping, Scene, TextureLoader } from "three";
-const scene = new Scene();
-// colore sfumato come il colore di sfondo di unity
-const texture = new TextureLoader().load("https://png.pngtree.com/png-clipart/20220215/ourmid/pngtree-blue-sky-and-white-clouds-png-image_4391818.png");
-// texture.wrapS = RepeatWrapping;
-// texture.wrapT = RepeatWrapping;
-// texture.repeat.set(4, 4);
+import { Color, Fog, RepeatWrapping, Scene, TextureLoader } from "three";
 
-scene.background = texture;
+// create scene
+const scene = new Scene();
+// add gradient for simulate sky
+scene.background = new Color(0x7ec0ee);
+// scene.fog = new Fog(0x7ec0ee, 0, 1000);
+
 
 export default scene;

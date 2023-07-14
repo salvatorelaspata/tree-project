@@ -1,8 +1,6 @@
 import { PerspectiveCamera } from "three";
-import { sizes } from "../util/constants";
 // Create a camera
-
-const camera = new PerspectiveCamera(75, sizes.width / sizes.height);
-camera.position.z = -30;
+const camera = new PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 5000);
+camera.position.set(0, 40, 100);
 
 export default camera; 
