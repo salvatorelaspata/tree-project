@@ -24,12 +24,17 @@ export const CORE_SETTINGS = {
     },
     // CHUNK
     CHUNK: {
+        // COMMON
         SIZE: 16,
-        HEIGHT: 150, // 384,
+        HEIGHT: 50, // 384,
         START: -3, // -64,
         SURFACEY: 0, // 100;
-        AMPLITUDE_FROM_SURFACEY: 10, // from surface y
-        FREQUENCY: 0.6,
+        // TRAINING
+        AMPLITUDE_FROM_SURFACEY: 3, // from surface y
+        FREQUENCY: 0.2,
+        // PERLIN
+        PERLIN_AMPLITUDE: 5,
+        PERLIN_FREQUENCY: 0.1,
         TRAINING: {
             FIXED: 'fixed',
             RANDOM: 'random',

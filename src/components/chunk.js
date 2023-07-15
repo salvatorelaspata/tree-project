@@ -5,7 +5,7 @@ import Block from './block';
 
 const { CHUNK: { START, SIZE, HEIGHT } } = CORE_SETTINGS
 
-const chunk = function (xStart, zStart, mode = 'fixed') {
+const chunk = function ({ xStart, zStart, mode = 'fixed' }) {
     const yStart = START;
     const xEnd = xStart + SIZE;
     const yEnd = yStart + HEIGHT;
@@ -20,7 +20,6 @@ const chunk = function (xStart, zStart, mode = 'fixed') {
             }
         }
     }
-
     return blocks;
 };
 

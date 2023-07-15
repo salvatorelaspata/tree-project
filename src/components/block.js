@@ -1,7 +1,7 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial } from "three";
 import { ImprovedNoise } from "three/examples/jsm/math/ImprovedNoise.js";
 import { CORE_SETTINGS, colors } from "../util/constants";
-const { CHUNK: { SURFACEY, TRAINING, AMPLITUDE_FROM_SURFACEY, FREQUENCY }, BLOCK: { SIZE } } = CORE_SETTINGS;
+const { CHUNK: { SURFACEY, TRAINING, AMPLITUDE_FROM_SURFACEY, FREQUENCY, PERLIN_AMPLITUDE, PERLIN_FREQUENCY }, BLOCK: { SIZE } } = CORE_SETTINGS;
 
 /**
  * Create a block in the world
@@ -50,7 +50,6 @@ const getBlockRandom = function ({ y }) {
     const floor = Math.floor(rand * AMPLITUDE_FROM_SURFACEY);
 
     const randY = SURFACEY + floor;
-
     if (y < randY) return new MeshBasicMaterial({ color: colors.block[Math.floor(Math.random() * 3)] });
     else return null;
 }
@@ -79,13 +78,11 @@ const getBlockSmooth2D = function ({ x, y, z }) {
 // # 5 Perlin noise
 const getBlockPerlin = function ({ x, y, z }) {
     const perlin = new ImprovedNoise();
-    let quality = 1;
-    const frequency = FREQUENCY;
-    const noise = perlin.noise(x / frequency * quality, z / frequency * quality, 0.0)
-    const amplitude = AMPLITUDE_FROM_SURFACEY;
-    const ySurface = SURFACEY + Math.floor(noise * amplitude);
+    const frequency = PERLIN_FREQUENCY;
+    const amplitude = PERLIN_AMPLITUDE;
+    const randY = Math.floor(SURFACEY + Math.abs(perlin.noise(x * frequency, y, z * frequency) * amplitude));
 
-    if (y < ySurface) return new MeshBasicMaterial({ color: colors.block[Math.floor(Math.random() * 3)] });
+    if (y < randY) return new MeshBasicMaterial({ color: colors.block[Math.floor(Math.random() * 3)] });
     else return null;
 }
 
