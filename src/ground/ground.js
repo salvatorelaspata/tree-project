@@ -6,7 +6,7 @@ import { DoubleSide, Mesh, MeshLambertMaterial, PlaneGeometry } from "three";
 const makeGround = function (y) {
     const ground = new Mesh(
         new PlaneGeometry(1000, 100, 10, 10),
-        new MeshLambertMaterial({ color: 0xE1C16E, side: DoubleSide })
+        new MeshLambertMaterial({ color: 0xE1C16E, side: DoubleSide, transparent: true, opacity: 0.5 })
     );
 
     ground.rotation.x = Math.PI / 2;

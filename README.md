@@ -9,6 +9,7 @@
 - Javascript
 - [Three.js](https://threejs.org/)
 - [Perlin noise](https://en.wikipedia.org/wiki/Perlin_noise)
+  https://github.com/mrdoob/three.js/blob/dev/examples/webgl_geometry_terrain.html
 
 ## How to run
 

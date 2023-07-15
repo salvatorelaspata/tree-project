@@ -8,6 +8,7 @@ import lights from './src/core/lights';
 import ground from './src/ground/ground';
 import chunk from './src/ground/chunk';
 import { CORE_SETTINGS } from './src/util/constants';
+import log from './src/util/log';
 
 // POPOLATE SCENE
 scene.add(camera);
@@ -17,32 +18,24 @@ lights.forEach(light => scene.add(light));
 
 // PLANE
 scene.add(ground(CORE_SETTINGS.CHUNK.SURFACEY));
-
 // scene.add(ground(CORE_SETTINGS.CHUNK.HEIGHT + CORE_SETTINGS.CHUNK.START));
-
 // scene.add(ground(CORE_SETTINGS.CHUNK.START));
 
 // SKY
 // scene.add(sky);
 
-// OBJs
-// . . .
-
 // CHUNK
 const { CHUNK: { SIZE, TRAINING } } = CORE_SETTINGS;
-const fnChunk = block => block !== null && scene.add(block)
+// const fnChunk = block => block !== null && scene.add(block)
 
-chunk(0 - SIZE / 2, 0 - SIZE / 2)
-  .forEach(fnChunk);
 
-chunk(SIZE, 0 - SIZE / 2, TRAINING.RANDOM)
-  .forEach(fnChunk);
+scene.add(chunk(0 - SIZE / 2, 0 - SIZE / 2))
 
-chunk(SIZE * 2 + SIZE / 2, 0 - SIZE / 2, TRAINING.SMOOTH)
-  .forEach(fnChunk);
+scene.add(chunk(SIZE, 0 - SIZE / 2, TRAINING.RANDOM))
 
-chunk(SIZE * 2 + SIZE * 2, 0 - SIZE / 2, TRAINING.SMOOTH2D)
-  .forEach(fnChunk);
+scene.add(chunk(SIZE * 2 + SIZE / 2, 0 - SIZE / 2, TRAINING.SMOOTH))
+
+scene.add(chunk(SIZE * 2 + SIZE * 2, 0 - SIZE / 2, TRAINING.SMOOTH2D))
 
 rerenderer();
 
@@ -54,4 +47,6 @@ rerenderer();
   rerenderer();
   // Call animation again on the next frame
   window.requestAnimationFrame(animation);
+  // logging
+  log(this);
 })();
