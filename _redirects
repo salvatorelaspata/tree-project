@@ -1,2 +1,3 @@
-/  /index.html   200
-/learning  /learning.html   200
+[[redirects]]
+    /index.html  /   200
+    /learning.html  /learning   200 
