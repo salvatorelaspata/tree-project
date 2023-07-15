@@ -34,7 +34,8 @@ export const CORE_SETTINGS = {
             FIXED: 'fixed',
             RANDOM: 'random',
             SMOOTH: 'smooth',
-            SMOOTH2D: 'smooth2d'
+            SMOOTH2D: 'smooth2d',
+            PERLIN: 'perlin',
         }
     },
     // MATERIAL

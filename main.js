@@ -29,7 +29,7 @@ const { CHUNK: { SIZE, TRAINING } } = CORE_SETTINGS;
 // const fnChunk = block => block !== null && scene.add(block)
 
 const origin = 0 - SIZE / 2
-const space = SIZE + SIZE / 2
+
 // FIXED
 scene.add(chunk(origin, origin))
 // RANDOM
@@ -43,6 +43,13 @@ scene.add(chunk(originSmooth2D, origin, TRAINING.SMOOTH2D))
 scene.add(chunk(originSmooth2D, origin + SIZE, TRAINING.SMOOTH2D))
 scene.add(chunk(originSmooth2D + SIZE, origin, TRAINING.SMOOTH2D))
 scene.add(chunk(originSmooth2D + SIZE, origin + SIZE, TRAINING.SMOOTH2D))
+// PERLIN
+const originPerlin = originSmooth2D + SIZE * 2 + SIZE / 2
+scene.add(chunk(originPerlin, origin, TRAINING.PERLIN))
+scene.add(chunk(originPerlin, origin + SIZE, TRAINING.PERLIN))
+scene.add(chunk(originPerlin + SIZE, origin, TRAINING.PERLIN))
+scene.add(chunk(originPerlin + SIZE, origin + SIZE, TRAINING.PERLIN))
+
 
 // NAV
 const nav = document.querySelector('.nav')

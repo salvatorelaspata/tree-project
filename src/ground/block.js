@@ -1,4 +1,5 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial } from "three";
+import { ImprovedNoise } from "three/examples/jsm/math/ImprovedNoise.js";
 import { CORE_SETTINGS, colors } from "../util/constants";
 const { CHUNK: { SURFACEY, TRAINING, AMPLITUDE_FROM_SURFACEY, FREQUENCY }, BLOCK: { SIZE } } = CORE_SETTINGS;
 
@@ -31,6 +32,8 @@ const getBlock = function (x, y, z, mode) {
             return getBlockSmooth({ x, y, z });
         case TRAINING.SMOOTH2D:
             return getBlockSmooth2D({ x, y, z });
+        case TRAINING.PERLIN:
+            return getBlockPerlin({ x, y, z });
         default:
             return getBlockFixed({ y });
     }
@@ -68,6 +71,19 @@ const getBlockSmooth2D = function ({ x, y, z }) {
     const zOffset = Math.floor(Math.sin(z * frequency) * amplitude);
 
     const ySurface = SURFACEY + xOffset + zOffset;
+
+    if (y < ySurface) return new MeshBasicMaterial({ color: colors.block[Math.floor(Math.random() * 3)] });
+    else return null;
+}
+
+// # 5 Perlin noise
+const getBlockPerlin = function ({ x, y, z }) {
+    const perlin = new ImprovedNoise();
+    let quality = 1;
+    const frequency = FREQUENCY;
+    const noise = perlin.noise(x / frequency * quality, z / frequency * quality, 0.0)
+    const amplitude = AMPLITUDE_FROM_SURFACEY;
+    const ySurface = SURFACEY + Math.floor(noise * amplitude);
 
     if (y < ySurface) return new MeshBasicMaterial({ color: colors.block[Math.floor(Math.random() * 3)] });
     else return null;
