@@ -1,5 +1,5 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial } from "three";
-import { CORE_SETTINGS } from "../util/constants";
+import { CORE_SETTINGS, colors } from "../util/constants";
 const { CHUNK: { SURFACEY, TRAINING, AMPLITUDE_FROM_SURFACEY, FREQUENCY }, BLOCK: { SIZE } } = CORE_SETTINGS;
 
 /**
@@ -21,18 +21,6 @@ const Block = function (x, y, z, mode = TRAINING.FIXED) {
     return mesh;
 };
 
-const colors = {
-    block: [
-        `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`,
-        `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`,
-        `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`,
-    ],
-    water: [
-        `rgb(240, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`,
-        `rgb(240, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`,
-        `rgb(240, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`,
-    ]
-}
 const getBlock = function (x, y, z, mode) {
     switch (mode) {
         case TRAINING.FIXED:

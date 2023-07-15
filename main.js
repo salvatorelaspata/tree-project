@@ -1,13 +1,13 @@
 import './style.css'
 // CORE COMPONENTS
+import { CORE_SETTINGS, cameraPosition, colors } from './src/util/constants';
 import { rerenderer } from './src/core/renderer';
 import scene from './src/core/scene';
-import camera from './src/core/camera';
+import camera, { cameraLerpAlpha, lerpCamera, onLerpStart } from './src/core/camera';
 import controls from './src/core/controls';
 import lights from './src/core/lights';
 import ground from './src/ground/ground';
 import chunk from './src/ground/chunk';
-import { CORE_SETTINGS } from './src/util/constants';
 import log from './src/util/log';
 
 // POPOLATE SCENE
@@ -28,16 +28,43 @@ scene.add(ground(CORE_SETTINGS.CHUNK.SURFACEY));
 const { CHUNK: { SIZE, TRAINING } } = CORE_SETTINGS;
 // const fnChunk = block => block !== null && scene.add(block)
 
+const origin = 0 - SIZE / 2
+const space = SIZE + SIZE / 2
+// FIXED
+scene.add(chunk(origin, origin))
+// RANDOM
+scene.add(chunk(SIZE, origin, TRAINING.RANDOM))
+// SMOOTH
+scene.add(chunk(SIZE * 2 + SIZE / 2, origin, TRAINING.SMOOTH))
+scene.add(chunk(SIZE * 2 + SIZE / 2, origin + SIZE, TRAINING.SMOOTH))
+// SMOOTH2D
+const originSmooth2D = SIZE * 2 + SIZE * 2
+scene.add(chunk(originSmooth2D, origin, TRAINING.SMOOTH2D))
+scene.add(chunk(originSmooth2D, origin + SIZE, TRAINING.SMOOTH2D))
+scene.add(chunk(originSmooth2D + SIZE, origin, TRAINING.SMOOTH2D))
+scene.add(chunk(originSmooth2D + SIZE, origin + SIZE, TRAINING.SMOOTH2D))
 
-scene.add(chunk(0 - SIZE / 2, 0 - SIZE / 2))
+// NAV
+const nav = document.querySelector('.nav')
 
-scene.add(chunk(SIZE, 0 - SIZE / 2, TRAINING.RANDOM))
+nav.style.backgroundColor = colors.block[0]
+const buttons = nav.children
+console.log(buttons)
+for (let i = 0; i < buttons.length; i++) {
+  const button = buttons.item(i)
 
-scene.add(chunk(SIZE * 2 + SIZE / 2, 0 - SIZE / 2, TRAINING.SMOOTH))
-
-scene.add(chunk(SIZE * 2 + SIZE * 2, 0 - SIZE / 2, TRAINING.SMOOTH2D))
+  button.style.backgroundColor = colors.block[1]
+  button.addEventListener(
+    'click',
+    e => onLerpStart(cameraPosition[e.target.getAttribute('data-face')], controls)
+  )
+}
 
 rerenderer();
+
+// if (typeof cameraLerpAlpha === "number") {
+//   lerpCamera();
+// }
 
 // Animation
 (function animation() {
@@ -48,5 +75,9 @@ rerenderer();
   // Call animation again on the next frame
   window.requestAnimationFrame(animation);
   // logging
-  log(this);
+  log();
+
+  if (typeof cameraLerpAlpha === "number") {
+    lerpCamera(controls);
+  }
 })();

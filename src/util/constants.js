@@ -1,4 +1,4 @@
-import { Color } from "three";
+import { Color, Vector3 } from "three";
 import { hemiLight } from "../core/lights";
 
 const STONE = 'stone'
@@ -26,7 +26,7 @@ export const CORE_SETTINGS = {
     CHUNK: {
         SIZE: 16,
         HEIGHT: 150, // 384,
-        START: -1, // -64,
+        START: -3, // -64,
         SURFACEY: 0, // 100;
         AMPLITUDE_FROM_SURFACEY: 10, // from surface y
         FREQUENCY: 0.6,
@@ -47,6 +47,27 @@ export const CORE_SETTINGS = {
         }
     }
 }
+
+export const colors = {
+    block: [
+        `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`,
+        `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`,
+        `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`,
+    ],
+    water: [
+        `rgb(240, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`,
+        `rgb(240, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`,
+        `rgb(240, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)})`,
+    ]
+}
+
+export const cameraPosition = {
+    n: new Vector3(-25, 38, -240),
+    e: new Vector3(-200, 38, 110),
+    s: new Vector3(55, 38, 200),
+    w: new Vector3(200, 38, 110),
+    top: new Vector3(55, 180, 0)
+};
 
 // UNUSED
 export const uniforms = {
