@@ -5,8 +5,8 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: './index.html',
-                learning: './learning.html',
-                perlin: './perlin.html',
+                learning: './src/pages/learning.html',
+                perlin: './src/pages/perlin.html',
             }
         }
     }
