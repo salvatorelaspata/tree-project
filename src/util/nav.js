@@ -1,5 +1,6 @@
 import { onLerpStart } from "../core/camera"
-import { colors } from "./constants"
+import controls from "../core/controls"
+import { cameraPosition, colors } from "./constants"
 
 export const useNav = () => {
     const nav = document.querySelector('.nav')

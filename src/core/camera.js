@@ -11,7 +11,6 @@ let cameraTarget = new Vector3(0, 0, 0);
 export let cameraLerpAlpha;
 
 export const lerpCamera = (controls) => {
-    console.log("export const lerpCamera")
     camera.position.lerp(cameraTarget, cameraLerpAlpha);
 
     if (cameraLerpAlpha < 1) {
@@ -22,7 +21,6 @@ export const lerpCamera = (controls) => {
 };
 
 export const onLerpStart = (target, controls) => {
-    console.log("export const onLerpStart", target, camera.position, controls)
     if (!camera.position.equals(target)) {
         controls.enabled = false;
         cameraTarget = target;
@@ -31,7 +29,6 @@ export const onLerpStart = (target, controls) => {
 };
 
 const onLerpComplete = (controls) => {
-    console.log("const onLerpComplete =")
     camera.position.lerp(cameraTarget, 1);
     controls.enabled = true;
     cameraTarget = undefined;
