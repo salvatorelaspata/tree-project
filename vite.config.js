@@ -6,6 +6,7 @@ export default defineConfig({
     build: {
         modulePreload: false,
         rollupOptions: {
+
             input: {
                 main: resolve(__dirname, 'index.html'),
                 learning: resolve(__dirname, 'src', 'pages', 'learning.html'),
